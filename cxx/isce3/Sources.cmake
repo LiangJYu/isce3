@@ -42,13 +42,14 @@ focus/DryTroposphereModel.cpp
 focus/GapMask.cpp
 focus/Presum.cpp
 focus/RangeComp.cpp
+geocode/GeocodeCov.cpp
+geocode/GeocodePolygon.cpp
+geocode/InvalidTypes.cpp
 geocode/baseband.cpp
 geocode/geocodeSlc.cpp
 geometry/DEMInterpolator.cpp
 geometry/loadDem.cpp
 geometry/Geo2rdr.cpp
-geocode/GeocodeCov.cpp
-geocode/GeocodePolygon.cpp
 geometry/geo2rdr_roots.cpp
 geometry/geometry.cpp
 geometry/getGeolocationGrid.cpp

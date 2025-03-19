@@ -86,6 +86,10 @@ focus/GapMask.h
 focus/Presum.h
 focus/Presum.icc
 focus/RangeComp.h
+geocode/GeocodeCov.h
+geocode/GeocodeCov.icc
+geocode/GeocodePolygon.h
+geocode/InvalidTypes.h
 geocode/baseband.h
 geocode/geocodeSlc.h
 geometry/DEMInterpolator.h
@@ -95,9 +99,6 @@ geometry/Shapes.h
 geometry/boundingbox.h
 geometry/Geo2rdr.h
 geometry/Geo2rdr.icc
-geocode/GeocodeCov.h
-geocode/GeocodeCov.icc
-geocode/GeocodePolygon.h
 geometry/geo2rdr_roots.h
 geometry/geometry.h
 geometry/getGeolocationGrid.h

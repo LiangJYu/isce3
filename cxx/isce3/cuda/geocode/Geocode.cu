@@ -18,6 +18,7 @@
 #include <isce3/cuda/geometry/gpuDEMInterpolator.h>
 #include <isce3/cuda/geometry/gpuGeometry.h>
 #include <isce3/except/Error.h>
+#include <isce3/geocode/InvalidTypes.h>
 #include <isce3/geometry/DEMInterpolator.h>
 #include <isce3/geometry/loadDem.h>
 #include <isce3/product/GeoGridParameters.h>
@@ -693,24 +694,7 @@ void Geocode::geocodeRasters(
         const auto interp_method = interp_methods[i_raster];
 
         // Get invalid value to be converted (maybe)
-        const double invalid_value = invalid_values_double[i_raster];
-
-        // Determine invalid values per type
-        float invalid_float;
-        double invalid_double;
-        unsigned char invalid_unsigned_char;
-        unsigned short invalid_unsigned_short;
-        unsigned int invalid_unsigned_int;
-        if (std::isnan(invalid_value)) {
-            invalid_float = std::numeric_limits<float>::quiet_NaN();
-            invalid_double = std::numeric_limits<double>::quiet_NaN();
-        } else {
-            invalid_float = static_cast<float>(invalid_value);
-            invalid_double = invalid_value;
-            invalid_unsigned_char = static_cast<unsigned char>(invalid_value);
-            invalid_unsigned_short = static_cast<unsigned short>(invalid_value);
-            invalid_unsigned_int = static_cast<unsigned int>(invalid_value);
-        }
+        const isce3::geocode::GeocodeInvalidTypes invalid_val(invalid_values_double[i_raster]);
 
         // Assign correct interpolator handle and invalid values to respective
         // class member containers by type
@@ -718,45 +702,45 @@ void Geocode::geocodeRasters(
         case GDT_Float32: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<float>>(interp_method));
-            _invalid_values.push_back(invalid_float);
+            _invalid_values.push_back(invalid_val.as_float());
             break;
         }
         case GDT_CFloat32: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<thrust::complex<float>>>(interp_method));
             _invalid_values.push_back(thrust::complex<float>(
-                        invalid_float, invalid_float));
+                        invalid_val.as_float(), invalid_val.as_float()));
             break;
         }
         case GDT_Float64: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<double>>(interp_method));
-            _invalid_values.push_back(invalid_double);
+            _invalid_values.push_back(invalid_val.as_double());
             break;
         }
         case GDT_CFloat64: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<thrust::complex<double>>>(interp_method));
             _invalid_values.push_back(thrust::complex<double>(
-                        invalid_double, invalid_double));
+                        invalid_val.as_double(), invalid_val.as_double()));
             break;
         }
         case GDT_Byte: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<unsigned char>>(interp_method));
-            _invalid_values.push_back(invalid_unsigned_char);
+            _invalid_values.push_back(invalid_val.as_unsigned_char());
             break;
         }
         case GDT_UInt16: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<unsigned short>>(interp_method));
-            _invalid_values.push_back(invalid_unsigned_short);
+            _invalid_values.push_back(invalid_val.as_unsigned_short());
             break;
         }
         case GDT_UInt32: {
             _data_interp_handles.push_back(std::make_shared<
                     InterpolatorHandle<unsigned int>>(interp_method));
-            _invalid_values.push_back(invalid_unsigned_int);
+            _invalid_values.push_back(invalid_val.as_unsigned_int());
             break;
         }
         default: {

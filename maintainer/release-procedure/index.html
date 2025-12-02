@@ -1,0 +1,1037 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../buildinstall/">
+      
+      
+        <link rel="next" href="../docker-image-updates/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Release Procedure - ISCE3 Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-procedure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ISCE3 Documentation" class="md-header__button md-logo" aria-label="ISCE3 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ISCE3 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Procedure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ISCE3 Documentation" class="md-nav__button md-logo" aria-label="ISCE3 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ISCE3 Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../buildinstall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/python/isce3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/cxx" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API (Unstable)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintainer Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Maintainer Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Procedure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Procedure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release branches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-release-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the release branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-image-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Image Updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-scanning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Scanning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release branches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-release-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the release branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="release-procedure">Release procedure</h1>
+<h2 id="background">Background</h2>
+<h3 id="release-branches">Release branches</h3>
+<p>Development of ISCE3 follows a <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow">forking
+workflow</a>,
+with developers merging changes from their forks into the default (<code>develop</code>) branch of
+the upstream repository.</p>
+<p>From time to time, the team makes versioned releases of ISCE3. Major and minor releases
+may include changes to existing interfaces and/or new features. Patch releases contain
+bug fixes that have been back-ported to old versions of the software, without interface
+changes.</p>
+<p>In preparation for major or minor software releases (usually 2-3 weeks before the
+release date), the ISCE3 team conducts a "feature freeze" wherein development of new
+features is temporarily paused -- only bug fixes should be merged during this time.
+There is typically no feature freeze period for patch releases.</p>
+<p>In order to facilitate back-porting bug fixes, and to avoid delaying development toward
+future releases during the feature freeze period, the team creates a new <em>release
+branch</em> at the start of the feature freeze. The release branch remains frozen while new
+features can continue to be merged into <code>develop</code>. Later on, bug fixes can be
+<a href="https://git-scm.com/docs/git-cherry-pick">cherry-picked</a> from the <code>develop</code> branch back
+to the release branch (or any older release branch).</p>
+<p>Release branches are named according to the major and minor version of the software as
+<code>release-v&lt;MAJOR&gt;.&lt;MINOR&gt;</code> (e.g. <code>release-v1.2</code>).</p>
+<h3 id="versioning">Versioning</h3>
+<p>ISCE3 follows a <a href="https://semver.org/">semantic versioning scheme</a>  which differs from
+the NISAR SDS release numbering scheme. Release versions of ISCE3 always conform to the
+format <code>&lt;MAJOR&gt;.&lt;MINOR&gt;.&lt;PATCH&gt;</code> (e.g. <code>1.2.3</code>).</p>
+<p>Non-release versions of ISCE3 additionally have a suffix appended to their version
+string, marking them as a development builds or pre-release versions, in order to
+distinguish them from official releases.</p>
+<p>Each commit of ISCE3 on the <code>develop</code> branch should be suffixed with <code>-dev</code>.  Each
+commit of ISCE3 on a release branch (e.g. <code>release-v1.2</code>) -- except for commits
+corresponding to a tagged release -- should be suffixed with <code>-pre</code>. The suffix may also
+include the Git hash of the current commit, if available, possibly with a <code>-dirty</code>
+suffix if the source directory had uncommitted local changes.</p>
+<figure>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Suffix</th>
+<th>Example(s)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release</td>
+<td></td>
+<td><code>1.2.3</code></td>
+<td>Tagged releases only</td>
+</tr>
+<tr>
+<td>Development</td>
+<td><code>-dev</code><br><code>-dev+&lt;git-hash&gt;</code><br><code>-dev+&lt;git-hash&gt;-dirty</code></td>
+<td><code>1.3.0-dev</code><br><code>1.3.0-dev+72e70b4db</code><br><code>1.3.0-dev+72e70b4db-dirty</code></td>
+<td>All commits on the<br><code>develop</code> branch</td>
+</tr>
+<tr>
+<td>Pre-release</td>
+<td><code>-pre</code><br><code>-pre+&lt;git-hash&gt;</code><br><code>-pre+&lt;git-hash&gt;-dirty</code></td>
+<td><code>1.2.4-pre</code><br><code>1.2.4-pre+aabbea82c</code><br><code>1.2.4-pre+aabbea82c-dirty</code></td>
+<td>All commits on release<br>branches, except for<br>tagged commits</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+<p><strong>Table 1.</strong> ISCE3 version suffixes.</p>
+</figcaption>
+</figure>
+<p>The <code>VERSION.txt</code> file at the root of the repository stores the ISCE3 version string.
+This file is parsed by CMake during ISCE3 builds in order to populate standard version
+information in the C++ library and Python package. The <code>VERSION.txt</code> file does not
+include the Git hash -- it will be automatically appended by the CMake build scripts (if
+possible).</p>
+<p>The version string, including the optional suffix, is intended to conform to the <a href="https://packaging.python.org/en/latest/specifications/version-specifiers/#version-specifiers">PyPA
+version specifier
+schema</a>.</p>
+<h2 id="release-procedure_1">Release procedure</h2>
+<figure>
+<p><img alt="ISCE3 branches and versioning" src="../branches-and-versioning.png" /></p>
+<figcaption>
+<p><strong>Figure 1.</strong> ISCE3 development/release branches and versioning.</p>
+</figcaption>
+</figure>
+<h3 id="creating-the-release-branch">Creating the release branch</h3>
+<p>Shortly before each major and minor software release (typically at the beginning of the
+feature freeze period), we should create a release branch. This step is not performed
+for patch releases.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only administrators with permission to push directly to the <a href="https://github.com/isce-framework/isce3">upstream
+repository</a> can create a release branch.
+Changes from other users will be rejected by ISCE3's branch protection rules.</p>
+</div>
+<p>Before creating the release branch:</p>
+<ul>
+<li>All development is happening on the <code>develop</code> branch.</li>
+<li>The version string in the <code>VERSION.txt</code> file has a <code>-dev</code> suffix (e.g. <code>1.2.0-dev</code>).</li>
+</ul>
+<p>The procedure for creating the release branch is as follows:</p>
+<ol>
+<li>
+<p>(Optional) If you haven't already, add the upstream remote repository to your local
+Git repository, using either the HTTPS or SSH URL. This step is only performed once.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">HTTPS</label><label for="__tabbed_1_2">SSH</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/isce-framework/isce3.git
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github.com:isce-framework/isce3.git
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Checkout the <code>develop</code> branch and pull the latest upstream changes (if any).</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>develop
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>upstream/develop<span class="w"> </span>--ff-only
+</code></pre></div>
+</li>
+<li>
+<p>(Optional) If the release is a major release, modify the contents of <code>VERSION.txt</code> to
+bump the major version number and reset the minor version number to zero (e.g.
+<code>1.2.0-dev</code> &#8594; <code>2.0.0-dev</code>). (The patch version number should typically be zero on
+the <code>develop</code> branch. If it was nonzero, reset it to zero.)</p>
+<div class="highlight"><span class="filename">VERSION.txt</span><pre><span></span><code><span class="gd">-1.2.0-dev</span>
+<span class="gi">+2.0.0-dev</span>
+</code></pre></div>
+<p>Commit the changes and push them to the upstream repository.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Bump major version&#39;</span>
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>develop
+</code></pre></div>
+</li>
+<li>
+<p>Create a new branch from the <code>develop</code> branch, named according to the current major
+and minor version of the software. For example, if the current version is <code>1.2.0-dev</code>,
+the new branch will be named <code>release-v1.2</code>.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>release-v1.2
+</code></pre></div>
+</li>
+<li>
+<p>On the newly created branch, modify the contents of <code>VERSION.txt</code> to replace the
+<code>-dev</code> suffix with <code>-pre</code> (e.g. <code>1.2.0-dev</code> &#8594; <code>1.2.0-pre</code>). Commit the changes and
+push them to the upstream repository.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/-dev/-pre/g&#39;</span><span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Update version suffix (dev -&gt; pre)&#39;</span>
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>release-v1.2
+</code></pre></div>
+</li>
+<li>
+<p>Switch back to the <code>develop</code> branch.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>develop
+</code></pre></div>
+<p>Modify the contents of <code>VERSION.txt</code> to bump the minor version number (e.g.
+<code>1.2.0-dev</code> &#8594; <code>1.3.0-dev</code>). (If the patch number was nonzero, reset it to
+zero.) This ensures that the <code>develop</code> branch version remains ahead of any future
+patch releases that we may make from the release branch we just created.</p>
+<div class="highlight"><span class="filename">VERSION.txt</span><pre><span></span><code><span class="gd">-1.2.0-dev</span>
+<span class="gi">+1.3.0-dev</span>
+</code></pre></div>
+<p>Commit the changes and push them to the upstream repository.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Bump minor version&#39;</span>
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>develop
+</code></pre></div>
+</li>
+</ol>
+<h3 id="creating-the-release">Creating the release</h3>
+<p>Once we are ready to create a new release, we will tag the release commit and draft a
+new release on GitHub.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only administrators with permission to push directly to the <a href="https://github.com/isce-framework/isce3">upstream
+repository</a> can create a release. Changes
+from other users will be rejected by ISCE3's branch protection rules.</p>
+</div>
+<p>The procedure for creating the release is as follows:</p>
+<ol>
+<li>
+<p>(Optional) If you haven't already, add the upstream remote repository to your local
+Git repository, using either the HTTPS or SSH URL. This step is only performed once.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">HTTPS</label><label for="__tabbed_2_2">SSH</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/isce-framework/isce3.git
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github.com:isce-framework/isce3.git
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Checkout the release branch (e.g. <code>release-v1.2</code>) and pull the latest upstream
+changes (if any).</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>upstream
+$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>release-v1.2
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>upstream/release-v1.2<span class="w"> </span>--ff-only
+</code></pre></div>
+</li>
+<li>
+<p>(Optional) If any bug fixes need to be back-ported from <code>develop</code>, cherry-pick them
+onto the release branch. Search the commit history of the <code>develop</code> branch for the
+commit ID of each bug fix, then apply it to the release branch using <code>git cherry-pick</code>,</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>cherry-pick<span class="w"> </span><span class="nv">$COMMIT_ID</span>
+</code></pre></div>
+<p>where <code>$COMMIT_ID</code> is the Git hash of the commit containing the bug fix.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the <code>develop</code> branch has diverged from the release branch, there may be merge
+conflicts that must be manually resolved in order to apply the changes from the
+commit. Follow Git's instructions to address the conflict(s) and complete the
+cherry-picking step. It may be helpful to cherry-pick commits in the order that
+they were merged into <code>develop</code> in order to help mitigate this issue.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cherry-picking is easiest when PRs are merged using the "Squash and merge"
+option (see <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request">Merging a pull
+request</a>),
+as is currently mandated by ISCE3's repository settings. This ensures that only
+a single commit must be cherry-picked per PR. When the "Rebase and merge" option
+is used instead, a range of one or more contiguous commits must be cherry-picked
+onto the release branch for each PR. When the "Create a merge commit" option is
+used, the commits in the <code>develop</code> branch to be cherry-picked may be interleaved
+with other commits from different PRs, significantly complicating the process.
+The merge commit itself cannot (and should not) be cherry-picked.</p>
+</div>
+</li>
+<li>
+<p>Modify the contents of <code>VERSION.txt</code> to remove the <code>-pre</code> suffix (e.g. <code>1.2.0-pre</code>
+&#8594; <code>1.2.0</code>). Commit the changes.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/-pre//g&#39;</span><span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Strip pre-release version suffix&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Tag the current commit with the release tag using <code>git tag</code>. Tags are named according
+to the convention <code>v&lt;MAJOR&gt;.&lt;MINOR&gt;.&lt;PATCH&gt;</code> (e.g. <code>v1.2.0</code>). Push the tag to the
+upstream repository.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>v1.2.0
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>v1.2.0
+</code></pre></div>
+</li>
+<li>
+<p>Modify the contents of <code>VERSION.txt</code> to bump the patch number and re-apply the <code>-pre</code>
+suffix (e.g. <code>1.2.0</code> &#8594; <code>1.2.1-pre</code>).</p>
+<div class="highlight"><span class="filename">VERSION.txt</span><pre><span></span><code><span class="gd">-1.2.0</span>
+<span class="gi">+1.2.1-pre</span>
+</code></pre></div>
+<p>Commit the changes and push them to the upstream repository.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>VERSION.txt
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Bump patch version; add pre-release suffix&#39;</span>
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>release-v1.2
+</code></pre></div>
+</li>
+<li>
+<p>Draft a new release on GitHub:</p>
+<ul>
+<li>Go to the <a href="https://github.com/isce-framework/isce3/releases">"Releases"</a> page of
+  the ISCE3 repository on GitHub.</li>
+<li>Click on "Draft a new release".</li>
+<li>Choose the new release tag (e.g. <code>v1.2.0</code>) from the "Tag: Select tag" drop-down
+  menu.</li>
+<li>Select the previous tag (e.g. <code>v1.1.1</code>) from the "Previous tag: auto" drop-down
+  menu.</li>
+<li>Give the release a title. When coinciding with a NISAR SDS release, the ISCE3
+  release is typically named after the SDS release (e.g. <code>R03.04.5</code>).</li>
+<li>Click on "Generate release notes" (see note below).</li>
+<li>Click on "Publish release".</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The automatically-generated release notes only include PRs merged since the previous
+release -- they do not include commits that have been cherry-picked onto the release
+branch. This means that release notes for any cherry-picked commits must be manually
+added to the changelog before publishing the release. Similarly, if any commits were
+cherry-picked onto a patch release, we may wish to exclude them from future release
+notes of the next major/minor release. This must be done by manually editing the
+automatically-generated changelog of that release before publishing it.</p>
+</div>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
